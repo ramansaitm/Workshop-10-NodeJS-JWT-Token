@@ -43,7 +43,7 @@ mongoose.connection.on('error', err => {
 })
 //node-cron and file inserting
 // const fileName="raman.txt"
-// fs.writeFile(fileName,"line 1/n")
+// fs.writeFile(fileName,"line 1/n")check
 
 nodeCron.schedule(' * * * * *', () => {
    
