@@ -8,4 +8,3 @@ router.post('/login',controller.login)
 router.get('/',authenticate,employeecontroller.index)
 
 module.exports=router
-

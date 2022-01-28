@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const nodeCron=require('node-cron')
+const fs=require('fs')
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -39,8 +41,28 @@ mongoose.connect(process.env.MONGO_URI, connectFieled).then(() => {
 mongoose.connection.on('error', err => {
     console.log("db connection error ,$(errror message")
 })
+//node-cron and file inserting
+// const fileName="raman.txt"
+// fs.writeFile(fileName,"line 1/n")
 
+nodeCron.schedule(' * * * * *', () => {
+   
+    Write();
+  });
 
+  function Write()
+  {
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date + ' ' + time;
+
+    const data = "Data inserted - " + dateTime + "\n";
+
+    fs.appendFile("rk.txt", data, () => {
+        console.log("Data is inserted into the file after one minute!");
+    })
+  }
 //created a serever 8000;
 
 
