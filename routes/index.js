@@ -1,3 +1,4 @@
+//router uses here
 const express=require('express')
 const {authenticate} =require('../mildware/index')
 const router=express.Router()
